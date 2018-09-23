@@ -20,3 +20,5 @@ getUserData.onclick = function(element) {
     });
   });
 };
+
+console.log('pospup.js');

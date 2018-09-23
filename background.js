@@ -1,11 +1,7 @@
-let test;
-
-
-
 chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
     switch(message.type) {
-      case "getCount":
+      case "setID":
         sendResponse(id);
         break;
       default:
@@ -14,16 +10,9 @@ chrome.runtime.onMessage.addListener(
   }
 );
 
-
-
-
-
-
-
-
-
-
-
+chrome.webNavigation.onHistoryStateUpdated.addListener(function() {
+    chrome.tabs.executeScript(null, {file:"myscript.js"});
+});
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({color: '#3aa757'}, function() {
@@ -33,7 +22,7 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.declarativeContent.onPageChanged.addRules([{
       conditions: [new chrome.declarativeContent.PageStateMatcher({
         // pageUrl: {hostEquals: 'developer.chrome.com'},
-        pageUrl: {urlMatches: 'app.intercom.io/a/apps/4hozdnh7/'},
+        pageUrl: {urlMatches: 'app.intercom.io/a/apps/4hozdnh7/users/'}
       })
       ],
       actions: [new chrome.declarativeContent.ShowPageAction()]

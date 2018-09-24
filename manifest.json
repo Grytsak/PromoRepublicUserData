@@ -2,7 +2,15 @@
   "name": "PromoRepublicUserData",
   "version": "0.0.1",
   "description": "Get full user data in intercom",
-  "permissions": ["activeTab", "declarativeContent", "storage", "webNavigation", "tabs", "*://app.intercom.io/*"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "webNavigation",
+    "tabs",
+    "*://app.intercom.io/*"
+  ],
   "options_page": "options.html",
   "background": {
     "scripts": ["background.js"],
@@ -25,7 +33,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*/*"],
+      "matches": ["https://app.intercom.io/a/apps/4hozdnh7/users/*/all-conversations", "https://*/*"],
       "js": ["myscript.js"]
     }
   ],

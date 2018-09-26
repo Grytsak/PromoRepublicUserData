@@ -1,18 +1,18 @@
 const serverData = document.getElementById('serverData');
 
 
-chrome.runtime.sendMessage({type: "getData"}, function(data) {
+chrome.runtime.sendMessage({ type: "getData" }, function (data) {
   serverData.innerHTML = data;
 });
 
 
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, {type: "getID"}, function(id) {
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  chrome.tabs.sendMessage(tabs[0].id, { type: "getID" }, function (id) {
     const body = document.body;
     let rootUrl = `https://app.promorepublic.com/admin/users/userInfo/${id}?search_by=user_id`;
 
     fetch(rootUrl)
-      .then(function (response) {
+      .then( (response) => {
         if (response.status == 200) {
           return response.text();
         } else {
@@ -27,6 +27,8 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       });
   });
 });
+
+
 
 
 
